@@ -1,0 +1,10 @@
+{% extends 'layout.html.twig' %}
+{% block body %}
+    <div class="col-md-8 col-md-push-2">
+        {{form(formCompetencePro)}}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    $("form[name='competence_pro']").attr('novalidate','novalidate')
+{% endblock %}

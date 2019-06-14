@@ -1,0 +1,54 @@
+{% extends 'layout.html.twig' %}
+{% block body %}
+                    <div class="col-lg-6 col-md-12">
+                        <section class="panel" style="margin-left: 300px; width: 100%">
+                            <header class="panel-heading panel-heading-transparent">
+                                <h2 class="panel-title" style="text-align: center; margin-bottom: 50px">Status du CV</h2>
+                            </header>
+                            <div class="panel-body" >
+                                <div class="table-responsive">
+                                    <table class="table table-striped mb-none">
+                                        <thead>
+                                        <tr>
+                                            <th style="text-align: center">Etapes</th>
+                                            <th style="text-align: center">Dernieres modifications</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="index" style="text-align: center">
+                                        <tr>
+                                            <td>   <a href="{{ path('index_profil') }}">Informations Personnelles</a></td>
+                                            <td><span class="label label-success">Success</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>  <a href="{{ path('formation') }}">Formation</a></td>
+                                            <td><span class="label label-success">Success</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>  <a href="{{ path('competences') }}">Competence</a></td>
+                                            <td><span class="label label-warning">Warning</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>  <a href="{{ path('experiencePro') }}">Experience Professionnelle</a></td>
+                                            <td><span class="label label-success">Success</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>  <a href="{{ path('technoPro') }}">Technologie </a></td>
+                                            <td><span class="label label-success">Success</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>  <a href="{{ path('competencePro') }}">Competences</a></td>
+                                            <td><span class="label label-success">Success</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Création de CV</td>
+                                            <td>{{ app.user.lastpdf|date('Y-m-d') }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                <!-- end: page -->
+{% endblock %}

@@ -1,0 +1,348 @@
+<page backtop="17mm" backbottom="17mm" backleft="10mm" backright="10mm">
+
+<page_footer>
+    [[page_cu]]/[[page_nb]]
+</page_footer>
+<table class="tableCompetence">
+    <tbody>
+        <tr>
+            <td style="width: 25%;">
+                <p align="left">
+                    <img width="150" height="90" src="../public/images/logo1.jpg" alt="Logo">
+                </p>
+            </td>
+            <td class="trinamme" style="width: 75%;">
+                <p>
+                    {{ app.user.trigramme }} <br>
+                    {{ app.user.poste }}
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p style="font-size: 110%; text-align:left;>
+                    {{ app.user.age }}
+                    ans
+                </p>
+            </td>
+
+            <td>
+                <p align="right">
+                    DOMICILE:  <strong> {{ app.user.adresse }} </strong>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <p align="right">
+                    EXPERIENCE PROFESSIONNELLE :  <strong> {{ app.user.expPro }} ans</strong>
+                </p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="tableCompetence">
+    <thead>
+    <tr class="formation">
+        <th colspan="3"> Formation
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for v in formations %}
+            {% if ( v.formationContinue != 1 ) %}
+                <tr>
+                    <td>
+                        {{ v.annee}}
+                    </td>
+                    <td>
+                        {{ v.intitule}}
+                    </td>
+                    <td>
+                        {{ v.lieu }}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+<table class="tableCompetence">
+    <thead>
+        <tr class="formation">
+            <th colspan="3">
+                Formation Continue
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for v in formations %}
+            {% if v.formationContinue != 0 %}
+                <tr>
+                    <td>
+                        {{ v.annee}}
+                    </td>
+                    <td>
+                        {{ v.intitule}}
+                    </td>
+                    <td>
+                        {{ v.lieu }}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+<table class="tableCompetence">
+    <thead>
+        <tr class="competence">
+            <th colspan="5">
+                Competences en management
+            </th>
+        </tr>
+    </thead>
+    <tbody class="body">
+    <tr>
+        <td style="width: 40%; border: 1px solid lightgrey">
+        </td>
+        <td style="border: 1px solid lightgrey">
+                Formation
+        </td>
+        <td style="border: 1px solid lightgrey">
+                Pratiqué <br> &lt; 2 ans
+        </td>
+        <td style="border: 1px solid lightgrey">
+                Confirmé <br>  2 à 5 ans <br>
+        </td>
+        <td style="border: 1px solid lightgrey">
+                Expert <br>    plus de 5 ans
+        </td>
+    </tr>
+    {% for categorie in categories %}
+        {% if (categorie.type != 1) %}
+            <tr>
+                <th colspan="5"  class="categorieIntitule" style="border: 1px solid lightgrey">
+                        {{ categorie.intitule }}
+                </th>
+            </tr>
+            {% for competence in competences %}
+                {% if( competence.categorie.id == categorie.id ) %}
+                <tr>
+                    <td class="title" width="90%">
+                            {{ competence.intitule }}
+                    </td>
+                    <td style="border: 1px solid lightgrey">
+                        {% if( competence.niveau == 0 ) %}
+                            <span class="content">X</span>
+                        {% endif %}
+                    </td>
+                    <td style="border: 1px solid lightgrey">
+                        {% if( competence.niveau == 1 ) %}
+                            <span class="content">X</span>
+                        {% endif %}
+                    </td>
+                    <td style="border: 1px solid lightgrey">
+                        {% if( competence.niveau == 2 ) %}
+                            <span class="content">X</span>
+                        {% endif %}
+                    </td>
+                    <td style="border: 1px solid lightgrey">
+                        {% if( competence.niveau == 3) %}
+                            <span class="content">X</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+    </tbody>
+</table>
+
+<table class="tableCompetence">
+    <thead>
+    <tr class="competence">
+        <th colspan="5">
+            Competences techniques
+        </th>
+    </tr>
+    </thead>
+    <tbody class="body">
+    <tr>
+        <td style="width: 40%; border: 1px solid lightgrey">
+        </td>
+        <td style="border: 1px solid lightgrey">
+            Formation
+        </td>
+        <td style="border: 1px solid lightgrey">
+            Pratiqué <br> &lt; 2 ans
+        </td>
+        <td style="border: 1px solid lightgrey">
+            Confirmé <br>  2 à 5 ans <br>
+        </td>
+        <td style="border: 1px solid lightgrey">
+            Expert <br>    plus de 5 ans
+        </td>
+    </tr>
+    {% for categorie in categories %}
+        {% if (categorie.type != 0) %}
+            <tr>
+                <th colspan="5"  class="categorieIntitule" style="border: 1px solid lightgrey">
+                    {{ categorie.intitule }}
+                </th>
+            </tr>
+            {% for competence in competences %}
+                {% if( competence.categorie.id == categorie.id ) %}
+                    <tr>
+                        <td class="title" width="90%">
+                            {{ competence.intitule }}
+                        </td>
+                        <td style="border: 1px solid lightgrey">
+                            {% if( competence.niveau == 0 ) %}
+                                <span class="content">X</span>
+                            {% endif %}
+                        </td>
+                        <td style="border: 1px solid lightgrey">
+                            {% if( competence.niveau == 1 ) %}
+                                <span class="content">X</span>
+                            {% endif %}
+                        </td>
+                        <td style="border: 1px solid lightgrey">
+                            {% if( competence.niveau == 2 ) %}
+                                <span class="content">X</span>
+                            {% endif %}
+                        </td>
+                        <td style="border: 1px solid lightgrey">
+                            {% if( competence.niveau == 3) %}
+                                <span class="content">X</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+    </tbody>
+</table>
+<table class="tableCompetence">
+    <tr class="competence">
+        <th colspan="6">
+        Résumé de carrière
+        </th>
+    </tr>
+    <tbody>
+    <tr class="entete">
+        <td>
+            Année
+        </td>
+        <td>
+            Client
+        </td>
+        <td>
+            Fonction
+        </td>
+        <td>
+            Mode
+        </td>
+        <td>
+            Env
+        </td>
+        <td>
+            Duree
+        </td>
+    </tr>
+    {% for expPro in expPros %}
+    <tr>
+        <td style="border: 1px solid lightgrey">
+            <p align="center">
+               {{ expPro.duree}}
+            </p>
+        </td>
+        <td style="border: 1px solid lightgrey">
+            <p align="center">
+                {{ expPro.client }}
+            </p>
+        </td>
+        <td style="border: 1px solid lightgrey">
+            <p align="center">
+                {{ expPro.fonction}}
+            </p>
+        </td>
+        <td style="border: 1px solid lightgrey">
+            <p align="center">
+                {{ expPro.mode }}
+            </p>
+        </td>
+        <td style="border: 1px solid lightgrey">
+            <p align="center">
+                {{ expPro.environnement }}
+            </p>
+        </td>
+        <td style="border: 1px solid lightgrey">
+            <p align="center">
+
+              {{ expPro.annee}} ans et {{ expPro.mois}} mois
+
+            </p>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<table class="tableCompetence">
+    <tr>
+        <th class="expPro">
+            Expérience Professionnelle
+        </th>
+    </tr>
+</table>
+{% for expPro in expPros %}
+    <table class="tableExp" style="width: 100%;">
+    <thead>
+    <tr class="entete2" style="border: 1px solid lightgrey" >
+        <td style="width: 40%;">
+            {{ expPro.client }}
+        </td>
+        <td style="width: 40%;">
+            {{ expPro.fonction }}
+        </td>
+        <td style="width: 20%; text-align: right;">
+            {% if expPro.dateFin|date('Ymd') < 'now'|date('Ymd') %}
+            Date de debut {{ expPro.duree }} , Date de fin {{ expPro.dureeFin }} <br>{{ expPro.annee}} ans et {{ expPro.mois}} mois
+            {% else %}
+                Date de debut {{ expPro.duree }} (en cours, {{ expPro.annee}} ans et {{ expPro.mois}} mois)
+            {% endif %}
+        </td>
+    </tr>
+    </thead>
+        <tbody>
+        <tr>
+            <td style="border: 1px solid lightgrey; background-color: lightgrey" colspan="3">
+                {{ expPro.description }}
+            </td>
+        </tr>
+        <tr>
+
+            <td  style="border: 1px solid lightgrey" colspan="2">
+                {% for competencePro in competencePros %}
+                {% if(competencePro.experiencePro == expPro.id) %}
+                  - {{ competencePro.intitule }}<br>
+                {% endif %}
+                {% endfor %}
+            </td>
+
+
+            <td style="border: 1px solid lightgrey; color: deepskyblue">
+                {% for technoPro in technoPros %}
+                {% if(technoPro.experiencePro == expPro.id) %}
+                    -  {{ technoPro.intitule }}<br>
+                {% endif %}
+                {% endfor %}
+
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+{% endfor %}
+</page>

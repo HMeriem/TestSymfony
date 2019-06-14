@@ -1,0 +1,103 @@
+{% extends 'layout.html.twig' %}
+{% block body %}
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            <section class="panel">
+                <header class="panel-heading panel-heading-transparent">
+                    <div class="panel-actions">
+                        <a href="#" class="fa fa-caret-down"></a>
+                        <a href="#" class="fa fa-times"></a>
+                    </div>
+                    <h2 class="panel-title">Experiences professionnelle</h2>
+                </header>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-none">
+                            <thead>
+                            <tr>
+                                <th>Modifier</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for v in experience %}
+                                <a>
+                                    <td>
+                                        <a href="{{ path('experiencePro', {'id' : v.id}) }}">
+                                                <li>
+                                                    Intitule : {{v.client}}
+                                                </li>
+                                                <ul>
+                                                    <li>
+                                                        {{ v.duree }}
+                                                    </li>
+                                                    <li>
+                                                        {{ v.dureeFin }}
+                                                    </li>
+                                                    <li>
+                                                        {{ v.fonction }}
+                                                    </li>
+                                                    <li>
+                                                        {{ v.mode }}
+                                                    </li>
+                                                    <li>
+                                                        {{ v.environnement }}
+                                                    </li>
+                                                </ul>
+                                            </a>
+                                        </td>
+                                    <td><span class="label label-success"> <a href="{{ path('experiencePro_delete', {'id' : v.id}) }}"> Remove</a></span></td>
+                                        <td>
+                                        <li>
+                                            Technologie professionnelle utilisée
+                                        </li>
+                                        <ul>
+                                            {% for technoPro in technoPros %}
+                                                {% if(technoPro.experiencePro == v.id) %}
+
+                                                    <li>
+                                                        <a href="{{ path('technoPro', {'id' : technoPro.id}) }}">
+                                                            {{ technoPro.intitule }}
+                                                            <div class="label label-success"> <a href="{{ path('technoPro_delete', {'id' : technoPro.id}) }}"> Remove</a></div>
+                                                        </a>
+                                                    </li>
+
+                                                {% endif %}
+                                            {% endfor %}
+
+                                        </ul>
+                                        </td>
+                                        <td>
+                                            <li>
+                                                Competence professionnelle utilisée
+                                            </li>
+                                            <ul>
+
+                                                {% for competencePro in competencePros %}
+                                                {% if(competencePro.experiencePro == v.id) %}
+                                                <li>
+                                                    <a href="{{ path('competencePro', {'id' : competencePro.id}) }}">
+                                                        {{ competencePro.intitule }}
+                                    <div class="label label-success"> <a href="{{ path('competencePro_delete', {'id' : competencePro.id}) }}"> Remove</a></div>
+                                                     </a>
+                                                 </li>
+                                    {% endif %}
+                                    {% endfor %}
+
+                                            </ul>
+
+                                        </td>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
